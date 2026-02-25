@@ -1,0 +1,282 @@
+/* ===== GLOBAL RESET ===== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f9fb;
+  color: #1e2a38;
+  line-height: 1.6;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== BRAND COLORS ===== */
+:root {
+  --primary-dark: #0b2545;
+  --primary-accent: #00a8a8;
+  --light-bg: #f4f9fb;
+  --footer-dark: #072f45;
+  --text-dark: #1e2a38;
+  --text-light: #666;
+  --border-color: #e0e0e0;
+}
+
+/* ===== SECTION SPACING ===== */
+.section {
+  padding: 60px 20px;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 80px 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 100px 60px;
+  }
+}
+
+/* ===== BUTTON SYSTEM ===== */
+.btnPrimary {
+  background-color: var(--primary-accent);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btnPrimary:hover {
+  background-color: #008c8c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 168, 168, 0.3);
+}
+
+.btnPrimary:active {
+  transform: translateY(0);
+}
+
+.btnOutline {
+  border: 2px solid var(--primary-dark);
+  color: var(--primary-dark);
+  background: transparent;
+  padding: 10px 26px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btnOutline:hover {
+  background-color: var(--primary-dark);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(11, 37, 69, 0.3);
+}
+
+.btnOutline:active {
+  transform: translateY(0);
+}
+
+/* ===== CARD POLISH ===== */
+.card {
+  border-radius: 12px !important;
+  border: none !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== FOOTER ===== */
+.footerSection {
+  background-color: var(--footer-dark);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footerSection p {
+  margin: 10px 0;
+  font-size: 0.95rem;
+}
+
+.footerSection a {
+  color: var(--primary-accent);
+  transition: color 0.3s ease;
+}
+
+.footerSection a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* ===== CONTAINER RESPONSIVENESS ===== */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .section {
+    padding: 40px 20px;
+  }
+
+  .btnPrimary,
+  .btnOutline {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 50px 20px;
+  }
+}
+
+/* ===== TEXT UTILITIES ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 20px 0 15px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* ===== FLEX UTILITIES ===== */
+.flex {
+  display: flex;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-1 {
+  gap: 0.5rem;
+}
+.gap-2 {
+  gap: 1rem;
+}
+.gap-3 {
+  gap: 1.5rem;
+}
+.gap-4 {
+  gap: 2rem;
+}
+
+/* ===== SPACING UTILITIES ===== */
+.mt-1 {
+  margin-top: 0.5rem;
+}
+.mt-2 {
+  margin-top: 1rem;
+}
+.mt-3 {
+  margin-top: 1.5rem;
+}
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+.mb-2 {
+  margin-bottom: 1rem;
+}
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.p-1 {
+  padding: 0.5rem;
+}
+.p-2 {
+  padding: 1rem;
+}
+.p-3 {
+  padding: 1.5rem;
+}
+.p-4 {
+  padding: 2rem;
+}
