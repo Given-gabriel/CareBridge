@@ -47,13 +47,6 @@ npm run dev
 - **Frontend:** React, Vite, React Router
 - **Database:** MySQL
 
-## Recommended: Single Repo
+## Single Repo
 
-This project uses a monorepo structure (all code in one repository). Benefits:
-
-- Single git history
-- Easier dependency management
-- Simple CI/CD pipeline
-- Better for small teams
-
-For large teams with different release schedules, consider splitting into separate repos.
+This project uses a monorepo structure (all code in one repository).
