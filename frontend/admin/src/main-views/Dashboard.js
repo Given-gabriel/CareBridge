@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import { callApi } from "../Helpers";
+import DashboardHome from "../views/DashboardHome";
 import "./dashboard.css";
 
 export default function Dashboard() {
@@ -33,8 +34,15 @@ export default function Dashboard() {
           appContext.token,
         );
         let complaintsCount = 0;
-        if (complaintsResponse && complaintsResponse.status === 1 && Array.isArray(complaintsResponse.data)) {
-          complaintsCount = complaintsResponse.data.reduce((sum, item) => sum + (item.total || 0), 0);
+        if (
+          complaintsResponse &&
+          complaintsResponse.status === 1 &&
+          Array.isArray(complaintsResponse.data)
+        ) {
+          complaintsCount = complaintsResponse.data.reduce(
+            (sum, item) => sum + (item.total || 0),
+            0,
+          );
         }
 
         setStats({
@@ -55,60 +63,13 @@ export default function Dashboard() {
     };
 
     fetchStats();
-  }, [appContext.token]);
+  }, [appContext.token, appContext]);
 
   const handleServicesRedirect = () => {
     appContext.navTo({ item: "services" });
   };
 
   return (
-    <div className="dashboard">
-      <div className="dashboard-header">
-        <h1>Dashboard</h1>
-        <p>Welcome back! Here's your overview.</p>
-      </div>
-
-      {stats.error && (
-        <div
-          className="alert alert-danger alert-dismissible fade show"
-          role="alert"
-        >
-          {stats.error}
-        </div>
-      )}
-
-      <div className="dashboard-grid">
-        {/* Services Card */}
-        <div className="stat-card">
-          <div className="stat-icon services">📊</div>
-          <div className="stat-content">
-            <h3>Services Available</h3>
-            <p className="stat-number">{stats.servicesCount}</p>
-            <p className="stat-label">Total services registered</p>
-          </div>
-        </div>
-
-        {/* Complaints Card */}
-        <div className="stat-card">
-          <div className="stat-icon complaints">📝</div>
-          <div className="stat-content">
-            <h3>Complaints/Suggestions</h3>
-            <p className="stat-number">{stats.complaintsCount}</p>
-            <p className="stat-label">Total complaints received</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Action Section */}
-      <div className="action-section">
-        <div className="action-card">
-          <h3>Manage Services</h3>
-          <p>View, create, and manage all available services</p>
-          <button className="btnPrimary" onClick={handleServicesRedirect}>
-            Go to Services →
-          </button>
-        </div>
-      </div>
-    </div>
+    <DashboardHome stats={stats} onServicesRedirect={handleServicesRedirect} />
   );
 }

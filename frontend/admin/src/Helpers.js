@@ -7,6 +7,14 @@ import ServiceForm from "./views/ServiceForm";
 
 export const BASE_API = "http://localhost:3000";
 
+export function getInlineLoader() {
+  return (
+    <div className="loader-container">
+      <div className="spinner"></div>
+    </div>
+  );
+}
+
 export function getMainView(app) {
   if (!app.token && app.navItem !== "login") {
     if (app.navItem === "register") return <Register />;

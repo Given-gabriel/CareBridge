@@ -1,58 +1,57 @@
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../App";
 import { getInlineLoader } from "../Helpers";
+import "../main-views/dashboard.css";
 
-export default function DashboardHome() {
-  const appContext = useContext(AppContext);
-  const [ready, setReady] = useState(false);
-  const [stats, setStats] = useState({
-    services: 0,
-    complaints: 0,
-  });
-
-  async function init() {
-    setReady(false);
-
-    const response = await fetch("http://localhost:5000/admin/stats");
-    const data = await response.json();
-
-    setStats(data);
-    setReady(true);
-  }
-
-  useEffect(() => {
-    init();
-  }, []);
-
-  if (!ready) {
+export default function DashboardHome({ stats, onServicesRedirect }) {
+  if (stats.loading) {
     return <div className="container mSupportLoading">{getInlineLoader()}</div>;
   }
 
   return (
-    <div className="container">
-      <h4 className="main-section-title mb-4 text-primary-brand">
-        Welcome Admin
-      </h4>
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>Welcome back! Here's your overview.</p>
+      </div>
 
-      <div className="row">
-        <div className="col-md-6">
-          <div
-            className="card custom-card p-4"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              appContext.navTo({ item: "services" });
-            }}
-          >
-            <h2 className="text-primary-brand">{stats.services}</h2>
-            <h6 className="text-muted">Total Services</h6>
+      {stats.error && (
+        <div
+          className="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          {stats.error}
+        </div>
+      )}
+
+      <div className="dashboard-grid">
+        {/* Services Card */}
+        <div className="stat-card">
+          <div className="stat-icon services">📊</div>
+          <div className="stat-content">
+            <h3>Services Available</h3>
+            <p className="stat-number">{stats.servicesCount}</p>
+            <p className="stat-label">Total services registered</p>
           </div>
         </div>
 
-        <div className="col-md-6">
-          <div className="card custom-card p-4">
-            <h2 className="text-primary-brand">{stats.complaints}</h2>
-            <h6 className="text-muted">Complaints / Suggestions</h6>
+        {/* Complaints Card */}
+        <div className="stat-card">
+          <div className="stat-icon complaints">📝</div>
+          <div className="stat-content">
+            <h3>Complaints/Suggestions</h3>
+            <p className="stat-number">{stats.complaintsCount}</p>
+            <p className="stat-label">Total complaints received</p>
           </div>
+        </div>
+      </div>
+
+      {/* Action Section */}
+      <div className="action-section">
+        <div className="action-card">
+          <h3>Manage Services</h3>
+          <p>View, create, and manage all available services</p>
+          <button className="btnPrimary" onClick={onServicesRedirect}>
+            Go to Services →
+          </button>
         </div>
       </div>
     </div>
